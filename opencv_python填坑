@@ -1,0 +1,47 @@
+http://blog.csdn.net/qq_16013649/article/details/78773174
+Anaconda Python OpenCV(OpenCV contrib)导入cv2出现找不到dll问题
+
+1.问题描述
+
+本来写好的程序换了一台电脑准备跑一下，然后做点后续实验，但是由于需要用到surf算法，所以又安装了一下opencv contrib。安装指令是
+
+pip install opencv-contrib-python
+
+结果莫名其妙安装好了后出现了以下问题：
+ImportError: DLL load failed: The specified module could not be found.
+
+这个就很尴尬了，为了解决这个问题尝试了很多种方法，最后给出一种解决方案。
+
+2.解决方案
+
+造成这个问题的原因是因为Anaconda版本问题，最新版本的Anaconda不会出现这样的错误，但是老版本的Anaconda是没有将一个python3.dll放在Anaconda安装的文件夹之中的。
+
+因此，首先的一步是建议删除opencv和opencv contrib相关的所有内容，这之后再安装，不然可能依然调用类库失败。
+
+删除指令
+
+pip uninstall opencv-python
+
+pip uninstall opencv-contrib-python
+
+然后在cmd中先输入指令查看自己的python版本
+
+python --version
+
+我的显示的是 Python3.5.2
+
+所以后面下载的时候就需要找这个版本的Python压缩包
+
+在这个网站里面找自己对应版本，比如我的话就是
+https://www.python.org/downloads/windows/
+
+Python 3.5.2 - 2016-06-27
+Download Windows x86-64 embeddable zip file
+
+从这个地方下载，下载解压后，只要一个文件那就是python3.dll
+
+将这个文件放到Anaconda的安装文件当中，说到具体的位置，只要你找到这个文件夹下面包含python.exe的话那么放在这个文件夹下面就可以。
+
+填坑完毕，记录一下，毕竟花了一点时间去查找。
+
+新版本的Anaconda没有这个问题，因为他们后面已经把这个python3.dll弄进去了。
