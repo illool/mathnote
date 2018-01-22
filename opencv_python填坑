@@ -46,3 +46,9 @@ Download Windows x86-64 embeddable zip file
 填坑完毕，记录一下，毕竟花了一点时间去查找。
 
 新版本的Anaconda没有这个问题，因为他们后面已经把这个python3.dll弄进去了。
+
+import cv2
+import numpy as np
+img = cv2.imread("C:\lena.jpg")
+cv2.imshow("lena",img)
+cv2.waitKey(10000)
